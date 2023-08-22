@@ -7,7 +7,7 @@ $(function () {
       submitSuccess: function ($form, event) {
           event.preventDefault();
           $this = $("#sendApplicationButton");
-          $this.prop("disabled", true).html('<div class="spinner-grow text-white mr-2 align-self-center loader-sm"></div> Submitting...');
+          $this.prop("disabled", true).html('<div class="spinner-grow text-white mr-2 align-self-center loader-sm"></div> Please wait, your documents are being uploaded.');
 
           var formData = new FormData($('#sendApplicationForm')[0]);
           var endpointUrl = $('#sendApplicationForm').attr('action');
