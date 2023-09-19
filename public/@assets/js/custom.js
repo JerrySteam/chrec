@@ -6,6 +6,7 @@ $(function () {
       },
       submitSuccess: function ($form, event) {
           event.preventDefault();
+          $('#success').html('');
           $this = $("#sendApplicationButton");
           $this.prop("disabled", true).html('<div class="spinner-grow text-white mr-2 align-self-center loader-sm"></div> Please wait, your documents are being uploaded.');
 
@@ -23,7 +24,8 @@ $(function () {
               processData: false,
               contentType: false,
               success: function (response) {
-                  console.log(response);
+                console.log(response);
+                if (response.status==="success") {
                   $('#success').html("<div class='alert alert-success'>");
                   $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                           .append("</button>");
@@ -32,6 +34,13 @@ $(function () {
                   $('#success > .alert-success')
                           .append('</div>');
                   $('#sendApplicationForm').trigger("reset");
+                } else {
+                  $('#success').html("<div class='alert alert-danger'>");
+                  $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                          .append("</button>");
+                  $('#success > .alert-danger').append($("<strong>").text(response.message));
+                  $('#success > .alert-danger').append('</div>');
+                }
               },
               error: function (xhr, status, error) {
                   console.log(xhr);
@@ -79,7 +88,8 @@ function formatErrorMessage(jqXHR, exception) {
       // CSRF token mismatch error
       return "CSRF token mismatch. Please refresh the page and try again.";
   } else if (jqXHR.status == 500) {
-      return "Internal Server Error [500].";
+      return "Error. Application not submitted. Please try again later!";
+    //   return "Internal Server Error [500].";
   } else if (exception === "parsererror") {
       return "Requested JSON parse failed.";
   } else if (exception === "timeout") {

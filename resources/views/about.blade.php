@@ -1,4 +1,4 @@
-<x-layouts.master title="About">
+<x-layouts.master title="About" menutitle="about">
     <x-layouts.breadcrumb title="About"/>
 
     <!-- About Start -->

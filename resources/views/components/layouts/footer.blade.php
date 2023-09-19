@@ -5,7 +5,7 @@
             <p>Covenant Research Ethics Committee (CHREC) is duly registered with the National Health Research Ethics Committee of Nigeria in line with the provisions of the National Code for Health Research Ethics, Nigeria.</p>
 
             <h6 class="text-white text-uppercase mb-3" style="letter-spacing: 5px;"><b>Registration No.</b></h6>
-            <p>Reg. No. NHREC/25/10/2021;10RG#:10RG0010037; OMB No. 0990-0279</p>
+            <p>NHREC/25/10/2021;10RG#:10RG0010037; OMB No. 0990-0279</p>
             {{-- <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;"><b>Newsletter</b></h5>
             <p>Rebum labore lorem dolores kasd est, et ipsum amet et at kasd, ipsum sea tempor magna tempor. Accu kasd sed ea duo ipsum. Dolor duo eirmod sea justo no lorem est diam</p>
             <div class="w-100">
@@ -23,11 +23,12 @@
                 <div class="col-md-6 mb-0">
                     <h5 class="text-white text-uppercase mb-4" style="letter-spacing: 5px;"><b>Quick Links</b></h5>
                     <div class="d-flex flex-column justify-content-start">
+                        <a class="text-white mb-2" href="https://covenantuniversity.edu.ng/" target="_blank"><i class="fa fa-angle-right mr-2"></i>Covenant University</a>
                         <a class="text-white mb-2" href="{{ route('about') }}"><i class="fa fa-angle-right mr-2"></i>About CHREC</a>
-                        <a class="text-white mb-2" href="{{ route('committee') }}"><i class="fa fa-angle-right mr-2"></i>CHREC Committee</a>
-                        <a class="text-white mb-2" href="{{ route('application-checklist') }}"><i class="fa fa-angle-right mr-2"></i>Application Checklist</a>
-                        <a class="text-white mb-2" href="{{ route('application-forms') }}"><i class="fa fa-angle-right mr-2"></i>Application Forms</a>
-                        <a class="text-white" href="{{ route('apply') }}"><i class="fa fa-angle-right mr-2"></i>Apply for Ethical Approval</a>
+                        {{-- <a class="text-white mb-2" href="{{ route('committee') }}"><i class="fa fa-angle-right mr-2"></i>CHREC Committee</a> --}}
+                        <a class="text-white mb-2" href="{{ route('application-checklist') }}"><i class="fa fa-angle-right mr-2"></i>Ethical Approval Checklist</a>
+                        <a class="text-white mb-2" href="{{ route('application-forms') }}"><i class="fa fa-angle-right mr-2"></i>Ethical Approval Forms</a>
+                        <a class="text-white mb-2" href="{{ route('apply') }}"><i class="fa fa-angle-right mr-2"></i>Apply for Ethical Approval</a>
                     </div>
                 </div>
                 <div class="col-md-6 mb-0">
@@ -50,7 +51,8 @@
 <div class="container-fluid bg-dark text-white border-top py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
   <div class="row">
       <div class="col-lg-12 text-center align-items-center mb-3 mb-md-0">
-          <p class="m-0 text-white">&copy; {{ date('Y') }} Covenant Health Research Ethics Committee (CHREC). All Rights Reserved.</p>
+        <p class="m-0 text-white">&copy; {{ date('Y') }} <a href="https://covenantuniversity.edu.ng/" target="_blank" class="m-0 text-white">Covenant University</a>. All Rights Reserved.</p>
+        {{-- <p class="m-0 text-white">&copy; {{ date('Y') }} Covenant Health Research Ethics Committee (CHREC). All Rights Reserved.</p> --}}
       </div>
       <!-- <div class="col-lg-6 text-center text-md-right">
           <ul class="nav d-inline-flex">

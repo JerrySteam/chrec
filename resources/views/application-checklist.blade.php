@@ -1,4 +1,4 @@
-<x-layouts.master title="Application Checklist">
+<x-layouts.master title="Application Checklist" menutitle="ethical">
   <x-layouts.breadcrumb title="Application Checklist"/>
 
   <!-- Application Checklist Start -->
@@ -13,7 +13,7 @@
                             <h6>Applicants are to attach the following documents:</h6>
                             <div class="d-flex justify-content-between">
                                 <ol>
-                                    <li>Completed application form (<a href="{{ route('application-forms') }}" target="_blank">Click here to download</a>)</li>
+                                    <li>Completed application form as applied to your research (<u><a href="{{ route('application-forms') }}" target="_blank">Click here to download</a></u>)</li>
                                     <li>Abridge CV of the Principal Investigator for P.I and Abridge CV of the main supervisor for BSC, MSC &amp; PhD thesis (Not more than 3pages)</li>
                                     <li>Abridge proposal containing the introduction, aim,objective, methodology, reference etc (Not more than 8 pages)</li>
                                     <li>A copy of questionnaire (if any)</li>
@@ -21,7 +21,7 @@
                                     <li>Completion of online training for investigators. Please click on the link and follow the quidelines to complete CITI Exam. 
                                         <h6>Guidelines for the CITI exam</h6>
                                         <ul>
-                                            <li><a href="https://about.citiprogram.org/" target="_blank">Go to CITI trainning</a></li>
+                                            <li><u><a href="https://about.citiprogram.org/" target="_blank">Go to CITI trainning</a></u></li>
                                             <li>Click on register and follow the step by step processes.</li>
                                             <li>Institution Name: <b>Center for Bioethics and Research (CBR) Nigeria</b></li>
                                             <li>Course to Register: <b>Nigerian National Code for Health Research Ethics</b></li>
@@ -80,7 +80,7 @@
             </div>
         </div>
         <div>
-            <p>For more clearifications you can <a href="{{ route('contact') }}" target="_blank">contact us</a>.</p>
+            <p>For more clearifications you can <u><a href="{{ route('contact') }}" target="_blank">contact us</a></u>.</p>
         </div>
     </div>
 </div>

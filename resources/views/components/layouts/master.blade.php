@@ -10,7 +10,7 @@
       <meta name="csrf-token" content="{{ csrf_token() }}">
 
       <!-- Favicon -->
-      <link href="{{ asset('@assets/img/favicon.ico') }}" rel="icon">
+      <link href="{{ asset('@assets/img/favicon.png') }}" rel="icon">
 
       <!-- CSS Libraries and custom styles -->
       <x-layouts.styles />
@@ -22,7 +22,7 @@
     <!-- Topbar End -->
 
     <!-- Navbar Start -->
-    <x-layouts.navbar />
+    <x-layouts.navbar :menutitle="strtolower($menutitle)" />
     <!-- Navbar End -->
 
     {{$slot}}

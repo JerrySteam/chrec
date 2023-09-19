@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Mail;
 use Illuminate\Http\Request;
 use App\Mail\ApplicationEmail;
-use Mail;
+use App\Jobs\SendApplicationEmailJob;
 // use Illuminate\Support\Facades\Mail;
 
 
@@ -42,14 +43,14 @@ class PageController extends Controller
         $request->validate([
             'full_name' => 'required|string',
             'email' => 'required|email',
-            'application_form' => 'required|mimes:pdf|max:2048', // PDF, max 2MB
-            'abridged_pi_or_supervisor_cv' => 'required|mimes:pdf|max:2048', // PDF, max 2MB
-            'abridged_proposal' => 'required|mimes:pdf|max:2048', // PDF, max 2MB
-            'questionnaire' => 'nullable|mimes:pdf|max:2048', // PDF, max 2MB
-            'consent_form' => 'nullable|mimes:pdf|max:2048', // PDF, max 2MB
-            'citi_certificate' => 'required|mimes:pdf|max:2048', // PDF, max 2MB
-            'irb_approval' => 'nullable|mimes:pdf|max:2048', // PDF, max 2MB
-            'evidence_of_payment' => 'required|mimes:pdf|max:2048', // PDF, max 2MB
+            'application_form' => 'required|mimes:pdf,doc,docx|max:1024', // PDF, max 1MB
+            'abridged_pi_or_supervisor_cv' => 'required|mimes:pdf,doc,docx|max:500', // PDF, max 500kb
+            'abridged_proposal' => 'required|mimes:pdf,doc,docx|max:1024', // PDF, max 1MB
+            'questionnaire' => 'nullable|mimes:pdf,doc,docx|max:500', // PDF, max 500kb
+            'consent_form' => 'nullable|mimes:pdf,doc,docx|max:200', // PDF, max 200kb
+            'citi_certificate' => 'required|mimes:pdf,doc,docx|max:300', // PDF, max 300kb
+            'irb_approval' => 'nullable|mimes:pdf,doc,docx|max:200', // PDF, max 200kb
+            'evidence_of_payment' => 'required|mimes:pdf,jpeg,png|max:200', // PDF, max 200kb
         ]);
 
         $data = $request->all();
@@ -80,6 +81,7 @@ class PageController extends Controller
             'subject' => 'CHREC Application Confirmation ['.$applicationRef.']',
             'body' => 'emails.applicant',
             'ref' => $applicationRef,
+            'applicant_name' => $data['full_name'],
         ];
 
         $chrecEmail = env('MAIL_FROM_ADDRESS');
@@ -87,38 +89,53 @@ class PageController extends Controller
             'subject' => 'Application for CHREC Ethical Approval ['.$applicationRef.']',
             'body' => 'emails.chrec',
             'ref' => $applicationRef,
+            'applicant_name' => $data['full_name'],
+            'applicant_email' => $data['email'],
         ];
 
         try {
             // Send email with attachment
-            Mail::to($data['email'])->send(new ApplicationEmail($applicantInfo, $data, $attachmentPaths));
-            Mail::to($chrecEmail)->send(new ApplicationEmail($chrecInfo, $data, $attachmentPaths));
+            Mail::to($chrecEmail)->send(new ApplicationEmail($chrecInfo, $attachmentPaths));
+            Mail::to($data['email'])->send(new ApplicationEmail($applicantInfo, []));
 
             $this->deleteUploadedDocs($attachmentPaths);
 
+            // // Dispatch job
+            // SendApplicationEmailJob::dispatch($chrecEmail, $chrecInfo, $attachmentPaths);
+            // SendApplicationEmailJob::dispatch($data['email'], $applicantInfo, []);
+
             return response()->json([
                 'status'=> 'success',
-                'message'=> 'Application successfully completed. Kindly check your email for confirmation.',
+                'message'=> 'Application successfully submitted. Kindly check your email for confirmation.',
             ]);
 
         } catch (\Exception $e) {
             // return ($e);
-            return [
+            return response()->json([
                 'status'=> 'error',
-                'message'=> 'Error. Email could not be sent!',
-            ];
+                'message'=> 'Error. Email could not be sent. Please try again',
+            ]);
         }
     }
 
     public function generateApplicationReference($length){
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        $randomString = '';
+        // $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        // $randomString = '';
 
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, strlen($characters) - 1)];
-        }
+        // for ($i = 0; $i < $length; $i++) {
+        //     $randomString .= $characters[rand(0, strlen($characters) - 1)];
+        // }
 
-        return 'Ref_'.$randomString;
+        // return 'Ref_'.$randomString;
+        $currentTime = microtime(true);
+        $microseconds = explode('.', $currentTime)[1]; // Get the milliseconds part
+
+        $reference = date('YmdHis') . $microseconds; // Combine date, time, and milliseconds
+
+        // Ensure the reference is unique within the same minute
+        $uniqueReference = $reference . rand(100, 999); // Append a random number
+
+        return 'Ref: '.$uniqueReference;
     }
 
     public function deleteUploadedDocs($attachmentPaths) {

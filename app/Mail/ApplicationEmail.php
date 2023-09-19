@@ -15,16 +15,14 @@ class ApplicationEmail extends Mailable
     use Queueable, SerializesModels;
 
     public $recipientInfo;
-    public $data;
     public $attachmentPaths;
     
     /**
      * Create a new message instance.
      */
-    public function __construct($recipientInfo, $data, $attachmentPaths)
+    public function __construct($recipientInfo, $attachmentPaths)
     {
         $this->recipientInfo = $recipientInfo;
-        $this->data = $data;
         $this->attachmentPaths = $attachmentPaths;
     }
 
@@ -57,11 +55,18 @@ class ApplicationEmail extends Mailable
     {
         $attachments = [];
 
+        if (empty($this->attachmentPaths)) {
+            return $attachments;
+        }
+        
         foreach ($this->attachmentPaths as $fieldName => $filePath) {
+            $originalFileName = pathinfo($filePath, PATHINFO_FILENAME);
+            $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+
             $fileName = str_replace('_', ' ', $fieldName);
             $fileName = ucfirst($fileName);
             $absoluteFilePath = storage_path('app/' . $filePath);
-            $attachments[] = Attachment::fromPath($absoluteFilePath)->as($fileName.'.pdf');
+            $attachments[] = Attachment::fromPath($absoluteFilePath)->as($fileName.'.'.$extension);
         }
         return $attachments;
     }

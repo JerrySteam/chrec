@@ -1,4 +1,4 @@
-<x-layouts.master title="Committee">
+<x-layouts.master title="Committee" menutitle="committee">
   <x-layouts.breadcrumb title="Committee"/>
 
   <!-- Team Start -->
@@ -109,7 +109,7 @@
                         <p>2</p>
                     </td>
                     <td>
-                        <p>Dr. Solomon Rotimi (Secretary)</p>
+                        <p>Prof. Solomon Rotimi (Secretary)</p>
                     </td>
                     <td>
                         <p>Biochemistry</p>
@@ -131,7 +131,7 @@
                         <p>4</p>
                     </td>
                     <td>
-                        <p>Dr. Tayo George&nbsp;</p>
+                        <p>Prof. Tayo George&nbsp;</p>
                     </td>
                     <td>
                         <p>Sociology</p>
@@ -175,10 +175,10 @@
                         <p>8</p>
                     </td>
                     <td>
-                        <p>Mrs. Avwhogo Krika</p>
+                        <p>Prof. Jelili Oyelade</p>
                     </td>
                     <td>
-                        <p>Matron/Nurse, CUMC</p>
+                        <p>Computer &amp; Info Sciences</p>
                     </td>
                 </tr>
                 <tr>
@@ -230,10 +230,10 @@
                         <p>13</p>
                     </td>
                     <td>
-                        <p>Prof. Jelili Oyelade</p>
+                        <p>Dr. Ademola Adebanjo</p>
                     </td>
                     <td>
-                        <p>Computer &amp; Info Sciences</p>
+                        <p>CMO</p>
                     </td>
                 </tr>
                 <tr>
@@ -274,7 +274,7 @@
                         <p>17</p>
                     </td>
                     <td>
-                        <p>Dr. Omolola Omotosho</p>
+                        <p>Dr. Titilope Dokunmu</p>
                     </td>
                     <td>
                         <p>Biochemistry</p>
@@ -285,17 +285,6 @@
                         <p>18</p>
                     </td>
                     <td>
-                        <p>Dr. Titilope Dokunmu</p>
-                    </td>
-                    <td>
-                        <p>Biochemistry</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>19</p>
-                    </td>
-                    <td>
                         <p>Dr. Joseph Adekoya&nbsp;&nbsp;</p>
                     </td>
                     <td>
@@ -304,7 +293,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <p>20</p>
+                        <p>19</p>
                     </td>
                     <td>
                         <p>Dr. Opeyemi Ayanda</p>
@@ -315,7 +304,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <p>21</p>
+                        <p>20</p>
                     </td>
                     <td>
                         <p>Dr. Franklyn Iheagwam</p>
@@ -326,13 +315,24 @@
                 </tr>
                 <tr>
                     <td>
+                        <p>21</p>
+                    </td>
+                    <td>
+                        <p>Mrs. Omolola Abatan</p>
+                    </td>
+                    <td>
+                        <p>Community Representative</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <p>22</p>
                     </td>
                     <td>
-                        <p>Dr. Ademola Adebanjo</p>
+                        <p>Mrs. Avwhogo Krika</p>
                     </td>
                     <td>
-                        <p>CMO</p>
+                        <p>Matron/Nurse, CUMC</p>
                     </td>
                 </tr>
                 <tr>

@@ -1,0 +1,24 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Force SSL
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI}/ [L,R=301]
+     # Remove public folder form URL
+    RewriteRule ^(.*)$ public/$1 [L]
+
+    # Extra Security Headers
+    Header set X-XSS-Protection "1; mode=block"
+    Header always append X-Frame-Options SAMEORIGIN
+    Header set X-Content-Type-Options nosniff
+
+</IfModule>
+
+
+#Disable index view
+options -Indexes
+#hide a Specifuc File
+<Files .env>
+    order allow,deny
+    Deny from all
+</Files>

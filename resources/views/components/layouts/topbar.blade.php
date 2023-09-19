@@ -1,9 +1,9 @@
 <div class="container-fluid d-none d-lg-block">
-  <div class="row align-items-center py-4 px-xl-5">
+  <div class="row align-items-center py-3 px-xl-5">
       <div class="col-lg-3">
           <a href="{{ route('index') }}" class="text-decoration-none">
-              <!-- <h1 class="m-0"><span class="text-primary">E</span>COURSES</h1> -->
-              <h5 class="m-0">Covenant Health Research Ethics Committee</h5>
+              {{-- <h5 class="m-0">Covenant Health Research Ethics Committee</h5> --}}
+              <img src="{{ asset('@assets/img/chrec.png') }}" style="width:80%;">
           </a>
       </div>
       <div class="col-lg-4 text-right">
